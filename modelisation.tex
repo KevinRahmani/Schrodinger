@@ -1,0 +1,274 @@
+\documentclass[11pt]{report} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eurosym}
+\usepackage[left=2.5cm,right=2.5cm,bottom=2.5cm,top=2.5cm]{geometry}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Roman{section} - \arabic{subsection}}
+\renewcommand{\thesubsubsection}{\Roman{section} - \arabic{subsection}) \alph{subsubsection}}
+
+\title{Modélisation de l'équation de Schrödinger}
+\author{Kevin Rahmani, Sarah Bergere, Clément Cassiet}
+\date{12 mars 2022}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{Introduction}
+
+Pour cette année de Bureau d'études, nous allons étudier l'équation de Schrödinger :
+\begin{equation}
+\hat{H}\psi(x,t) = i\hbar\dfrac{\partial}{\partial t}\psi(x,t) 
+\end{equation}
+
+Dans un premier temps nous allons étudier cette équation pour les états stationnaires d'une particule.
+
+\begin{equation}
+(-\frac{\hbar^2}{2m}\frac{\partial^2 \psi(x,t)}{\partial x^2}  + V(x) \psi(x,t))= i\hbar\dfrac{\partial}{\partial t}\psi(x,t) 
+\end{equation}
+
+Nous avons $\psi(x,t) = \varphi(x)f(t)$ ce qui donne $-\frac{\hbar^2}{2m}\dfrac{\mathrm{d}^2 \varphi(x)}{\mathrm{d} x^2}  + V(x) \varphi(x)= E\varphi(x)$ \\
+
+La fonction $\varphi(x)$ est une fonction de x. Sa dérivée $\varphi'(x)$ est également continue sauf lorsque le potentiel $V(x)$ présente une discontinuité d’amplitude infinie. $\varphi(x)$ doit s’annuler au bord d’une barrière de potentiel infiniment haute.
+
+\newpage
+\section{Les états stationnaires d'une particule libre}
+
+Pour les états stationnaires, $V(x)=0$, nous avons donc :
+\begin{equation} \label{equation1}
+-\frac{\hbar^2}{2m}\varphi''(x) = E\varphi(x).
+\end{equation} 
+
+Afin de trouver les solutions de l'équation \ref{equation1} pour une énergie positive nous allons réarranger l'équation afin d'obtenir une équation différentielle à coefficient constant sans second membre :
+\begin{equation}
+\dfrac{\mathrm{d}^2 \varphi}{\mathrm{d} x^2}+\frac{2mE}{\hbar^2}\varphi(x) = 0 \nonumber
+\end{equation}
+Pour simplifier la suite nous prendrons $k^2 = \frac{2mE}{\hbar^2}$.
+Ce qui nous permet d'obtenir : 
+\begin{equation} \dfrac{\mathrm{d}^2 \varphi}{\mathrm{d} x^2}+k^2\varphi = 0 , \nonumber \end{equation} ce que l'on reconnaît comme étant un polynôme caractéristique qui a pour solution : \begin{equation} \varphi(x) = \alpha e^{ikx} + \beta e^{-ikx} \nonumber\end{equation} \\
+A présent nous allons introduire la pulsation $w_k = \hbar k^2/2m$ afin d'écrire la forme générale de la fonction d'onde qui est : \begin{equation} \psi(x,t) = \varphi(x) e^{-i\frac{Et}{\hbar}} \nonumber\end{equation}
+\begin{equation} \psi(x,t) = \alpha \exp{[i(kx-\frac{Et}{\hbar})]} +\beta \exp{[-i(kx+\frac{Et}{\hbar})]}.  \nonumber \end{equation}
+Ainsi nous avons avec $k^2 = \frac{2mE}{\hbar^2}$, le spectre continue d'énergie : \begin{equation} E_k = \frac{\hbar^2 k^2}{2m} =\hbar(\frac{\hbar k^2}{2m}) =\hbar w_k \nonumber \end{equation}
+On peut réécrire la fonction d'onde qui est composé de deux ondes planes de la façon suivante avec la pulsation $w_k$ : \begin{equation} \psi(x,t) = \alpha \exp{[i(kx-w_kt)]} + \beta \exp{[-i(kx-w_kt})] \end{equation}
+La première exponentiel va dans le sens des x positifs tandis que la deuxième exponentiel va dans le sens des x négatifs.\\
+
+Nous allons maintenant étudier le cas où l'énergie $E$ est négative. Cette condition implique que : $\dfrac{d^2 \varphi}{dx^2} - k^2\varphi = 0$ où on retrouve encore une fois le polynôme caractéristique : $r^2 - k2 = 0 \Rightarrow r^2 = k^2 $.\\
+
+On obtient comme solution : \begin{equation} \varphi(x) = \alpha' e^{kx} + \beta e{-kx} \nonumber \end{equation} qui est une solution impossible car  $\alpha' e^{kx}$ est non bornée. On a donc à la fin \begin{equation} \psi(x,t) = \varphi(x) e^{-\frac{iEt}{\hbar}} . \end{equation}
+
+\section{Les états liés d'un puits de potentiel}
+\subsection{Position du problème}
+
+L'équation de Schrödinger pour les états stationnaires d'une particules dans un potentiel V(x) constant par morceaux:
+\begin{equation}
+    \psi(x,t) = \varphi(x)e^{-i\mathrm{E}t/\hbar}
+\end{equation} \\
+Avec  $\varphi(x)$ régie par l'équation différentielle :
+\begin{equation}
+     \dfrac{\hslash^2}{2m}  \dfrac{\mathrm{d}^2 \varphi(x)}{\mathrm{d} x^2} + [\mathrm{E} -\mathrm{V}(x)]\varphi(x) = 0 \hspace*{1cm} \textrm{où E désigne l'énergie totale de la particule.}
+\end{equation}\\
+Si $E-V > 0 \Rightarrow$ Les solutions sont par morceaux des sinusoïdes\\
+Si $E-V < 0 \Rightarrow$ Les solutions sont par morceaux des exponentielles\\
+
+\subsection{Étude des discontinuités}
+En un point $x_0$, $\forall\varepsilon > 0,\mathrm{V} \,(x_0 - \varepsilon) \neq (x_0 + \varepsilon)$\\\\
+En intégrant l'équation (7) entre $x_0 - \epsilon$ et $x_0 + \epsilon$, on trouve :
+\begin{equation}
+    \varphi'\, (x_0 + \varepsilon) - \varphi'(x_0 - \varepsilon)\, + \dfrac{2m}{\hbar^{2}} \int_{x_0 + \varepsilon}^{x_0 - \varepsilon} (\mathrm{E} - \mathrm{V})\varphi \mathrm{d}x = 0
+\end{equation}
+Si $\varphi(x)$ et $\varphi'(x)$ sont continues, il est alors possible de trouver E même en $x_0$ où V est discontinue.\\
+Si V(x >$x_0$) $\rightarrow$ $\infty$ alors on a $\varphi(x) = 0$.
+
+\subsection{Puits rectangulaires des profondeurs infinies}
+Le puits de potentiel infini est défini par : 
+
+\begin{equation}
+V(x) = \begin{cases} 
++\infty & si \;\; x<0  \quad \rightarrow \quad \varphi(x<0)=0\\
+0 & si \;\; 0 \leq x \leq L \\
++\infty & si \;\; x>L \quad \rightarrow \quad \varphi(x>0)=0 \\
+\end{cases}
+\end{equation}
+$\Rightarrow \varphi(x > L) = \varphi(x = 0) = 0$\\
+
+Nous allons écrire les solutions stationnaires de l’équation de Schrödinger suivant le signe de E.$\\$
+
+$\underline{Si \quad E<0:}$
+\begin{equation}
+    \dfrac{d^2\varphi}{dx^2}+\dfrac{2mE}{\hbar^2}\varphi{x} = 0 \Rightarrow r^2 - k^2 = 0 \qquad avec \quad k^2=-\dfrac{2mE}{\hbar^2}
+    \nonumber
+\end{equation}
+
+La solution générale de l'équation est : $\varphi(x) = Acosh(kx) + Bsinh(kx) = \alpha e^{kx}+\beta e^{-kx}$\\
+Avec les conditions initiales on obtient : $\quad A=0 \quad et \quad B=sinh(kL) = 0 \Rightarrow B=0$\\\\
+Solution : $\varphi(x)=0 \quad \forall x \quad$ "Sans intérêt" \\
+
+$\underline{Si \quad E>0:}$
+\begin{equation}
+    \dfrac{d^2\varphi}{dx^2}+\dfrac{2mE}{\hbar^2}\varphi{x} = 0 \Rightarrow r^2 - k^2 = 0 \qquad avec \quad k^2=\dfrac{2mE}{\hbar^2}
+    \nonumber
+\end{equation}
+\\
+La solution générale de l'équation est : $\varphi(x) = acos(kx) + bsin(kx)$ \\
+continuité : $\rightarrow \varphi(x=0) = \varphi(x=L)=0$\\
+\\
+$(i) \quad \varphi(0) = a \times 1 + b \times 0 = 0 \Rightarrow a = 0$\\
+$(ii) \quad \varphi(L) = a cos(kL) +bsin(kL) = bsin(kL) = 0 \Rightarrow$ \begin{equation}
+\begin{cases} 
+\varphi(x) = 0 & si \;\; b=0 \quad \textrm{"Sans intérêt"} \\
+sin(kL)=0 & si \;\; b\ne0\\
+\end{cases}
+\nonumber
+\end{equation}\\
+$\Rightarrow kL = n\pi,\, n \in N*$\\
+\\
+On arrive donc a l'équation suivante :\\
+\begin{equation}
+    \int_{-\infty}^{+\infty} \lvert \psi(x,t)\rvert^2dx=1 \Rightarrow b = ? \qquad avec \qquad \psi(x,t) = \begin{cases} 
+0 & si \;\; x<0  \\
+b sin(n\pi\dfrac{x}{L}) e^{-iEt/\hbar} \\
+0 & si \;\;x>L \\
+\end{cases}
+\end{equation}\\
+\\
+On obtient que  : $b = \sqrt{2/L}$ \quad
+\begin{equation}
+    \int_{0}^{n\pi}\dfrac{L}{n\pi}sin^2(u)du = (\dfrac{L}{n\pi} \times \dfrac{n\pi}{2} )=\dfrac{L}{2}
+    \nonumber
+\end{equation}\\
+Le résultat de la longueur d'onde de Broglie est donc : $\varphi(x)=\sqrt{\dfrac{2}{L}}sin(n\dfrac{\pi x}{L}) \qquad \textrm{avec}\quad \lambda_n =\dfrac{2L}{n}$\\
+\\
+$\underline{\textrm{Détail du premier niveau de la particule (1 niveau max atteint) :}}$
+
+- Pour A : la fonction est positive sur [0;a], croissante progressive sur [0;a/2], décroissante progressive sur [a/2;a] et son maximum est atteint en x=a/2
+
+- Pour B : la fonction est positive sur [0;a], croissante accélérée sur [0;a/2], décroissante accélérée sur [a/2;a] et son maximum est atteint en x=a/2\\
+\\
+$\underline{\textrm{Détail du deuxième niveau de la particule (2 niveau max atteint) :}}$
+
+- Pour A : la fonction est sinusoïdale, croissante sur [$0;\dfrac{a}{4}$]U[$\dfrac{3a}{4};a$], décroissante sur [$\dfrac{a}{4};\dfrac{3a}{4}$] et de période T=A.
+
+- Pour B : la fonction est sinusoïdale, croissante sur [$0;\dfrac{a}{4}$]U[$\dfrac{a}{2}$;$\dfrac{3a}{4}$], décroissante sur [$\dfrac{a}{4}$;$\dfrac{a}{2}$]U[$\dfrac{3a}{4}$;a] et de période T=$\dfrac{a}{2}$.\\
+\\
+$\underline{\textrm{Détail du troisième niveau de la particule (3 niveau max atteint) :}}$
+
+- Pour A : la fonction est sinusoïdale, croissante sur [0;$\dfrac{a}{4}$]U[$\dfrac{a}{2};\dfrac{3a}{4}$], décroissante sur [$\dfrac{a}{4};\dfrac{a}{2}$]U[$\dfrac{3a}{4}$;a] et de période T=$\dfrac{2a}{3}$.
+- Pour B : la fonction est sinusoïdale, croissante sur [$0;\dfrac{a}{6}$]U[$\dfrac{a}{3}$;$\dfrac{a}{2}$]U[$\dfrac{2a}{3};\dfrac{5a}{6}$], décroissante sur [$\dfrac{a}{6}$;$\dfrac{a}{3}$]U[$\dfrac{a}{2}$;$\dfrac{2a}{3}$]U[$\dfrac{5a}{6}$;a], et de période $T=\dfrac{a}{3}$.\\
+\\
+
+Les niveaux d'énergie quantifié des états liés de cette particule confinée sont :\\
+\begin{equation}
+    E_n = n^2(\dfrac{\hbar^2\pi^2}{2mL^2})=\dfrac{h^2n^2}{8mL^2} \quad, \quad n\geq 1
+    \nonumber
+\end{equation}
+
+
+
+\newpage
+\section{Les états non liés - Effet tunnel}
+Quand le potentiel V est nul : \\
+
+$\Rightarrow \quad \ddot\psi + k^2\psi = 0$ et $E=\frac{\hbar^2 k^2}{2m}$\\ 
+
+$\psi_I=A_Ie^{ikx}+B_Ie^{-ikx}$ \quad et \quad $ \psi_{III}=A_{III}e^{ikx}+B_{III}e^{-ikx}$
+
+
+\subsection{Barrière de potentiel rectangulaire}
+$V(x)=V_0$ pour $0<x<a;$ \qquad $V(x)=0$ pour $x<0$ ou $x>a$\\
+
+Écrivons les solutions stationnaires de l'équation de Schrödinger :\\
+
+\begin{equation}
+    \Rightarrow \quad E\varphi(x)=\left( \frac{-\hbar^2}{2m} \right)\left( \frac{\partial^2 \varphi}{\partial x^2} \right) + V(x)\varphi(x)
+\nonumber
+\end{equation}
+\begin{equation}
+    \quad \frac{\partial^2\varphi}{\partial x^2}-\frac{2m}{\hbar^2}\left( V(x)-E \right)\varphi(x)=0
+    \nonumber
+\end{equation}\\
+
+
+$\begin{cases}
+\varphi(x=0^+)=\varphi(x=0^-) : A_1 + B_1 = A_2 + B_2\\
+\varphi'(x=0^+)=\varphi(x=0^-) : ik(A_1 - B_1) = K(A_2 - B_2)\\\\
+\varphi(x=a^+)=\varphi(x=a^-) : A_2e^{Ka}+B_2e^{-Ka}=A_3e^{ika}=1\\
+\varphi'(x=a^+)=\varphi(x=a^-) : K(A_2e^{Ka}-B_2e^{-Ka})=ikA_3e^{ika}=ik\\
+\end{cases}$\\\\
+
+\begin{equation}
+    \Rightarrow \quad 
+    \begin{cases}
+    4A_1=4\cosh(Ka)-2i(\frac{k}{K}-\frac{K}{k})\sinh(Ka)\\
+    B_1=\frac{-1}{2}i(\frac{k}{K}+\frac{K}{k})\sinh(Ka)
+    \end{cases}
+    \nonumber
+\end{equation}\\\\\\
+A présent calculons les coefficients R de réflexion et T de transmission donnant les probabilités respectives qu'a la particule de se réfléchir sur la barrière ou de la franchir : \\ \\
+onde incidente : $\quad A_1e^{i(kx-\omega t)}$\\
+onde réfléchi : $\quad B_1e^{-i(kx+\omega t)}$\\                
+onde transmise : $\quad A_3e^{i(kx-\omega t)}$\\
+
+$\Rightarrow \quad R=\frac{|B_1|^2}{|A_1|^2}$ et $T=\frac{|A_3|^2}{|A_1|^2}$\\\\
+\begin{equation}
+    |A_3|^2=1,\quad \frac{1}{T}=|A_1|^2=[\cosh(Ka)]^2+\left( \frac{1}{2}\right)^2\left( \frac{k}{K}-\frac{K}{k} \right)(\sinh(Ka)^2)
+    \nonumber
+\end{equation}
+\begin{equation}
+    =\frac{1}{4}\left( \left(\frac{k}{K}\right)^2-2+\left(\frac{K}{k}\right)^2+4\right)=\frac{1}{4}\left(\frac{k}{K}+\frac{K}{k}\right)^2
+    \nonumber
+\end{equation}\\
+\begin{equation}
+    \left(\frac{k}{K}+\frac{K}{k}\right)^2=\frac{V_0^2}{E(V_0-E)}
+    \nonumber
+\end{equation}
+\begin{equation}
+    \Rightarrow \quad \frac{1}{T}=1+\left( \frac{V_0^2}{4E(V_0-E)} \right)\left(\sinh(Ka)\right)^2
+    \nonumber
+\end{equation}\\\\
+On a $R=1-T :$
+\begin{equation}
+    R=|B_1|^2T=\frac{1}{4}\underbrace{\left( \frac{k}{K}+\frac{K}{k}^2 \right)}_{\frac{V_0^2}{E(V_O-E)}}
+    (\sinh(Ka))^2T
+    \nonumber
+\end{equation}\\
+\begin{equation}
+    R=\frac{\frac{V_0^2}{E(V_0-E)}\left( \sinh(Ka\right))^2}{4+\frac{V_0^2}{E(V_O-E)}(\sinh(Ka))^2}
+    \nonumber
+\end{equation}\\
+Pour un électron avec des o.d.g atomiques avec $E=1eV, V_0=2eV, a\sim 0.1nm$ T vaut :
+\begin{equation}
+    T=0.8 \Rightarrow \quad 80\% \quad\textrm{de probabilité de passage de la barrière (classique : 0\%)}
+    \nonumber
+\end{equation}\\
+Pour un proton $m_p\sim2000m_e$ en prenant $V_0=2E\sim10MeV$ et $a\sim1fm$, T vaut :\\
+\begin{equation}
+    T=0.8 \Rightarrow \textrm{proton délocalisé bien que }m_p\sim 2000m_e:
+    \nonumber
+\end{equation}
+
+
+\newpage
+\section{Potentiel à étudier}
+
+Pour cette partie nous avons différent potentiel selon l'intervalle :
+\begin{equation}
+V(x) = \begin{cases} 
++\infty & si \;\; x<-b \\
+0 & si \;\; -b<x<-a \\
+-V_0 \times x^2 + V_1 & si \;\; -a \leq x \leq a\\
+0 & si \;\; a<x<b \\
++\infty & si \;\; x>b \\
+\end{cases}
+\end{equation}
+Cependant nous ne pouvons pas calculer $\psi(x)$ car il n'y a pas de solution exacte, $\psi(x)$ est calculable seulement avec un programme.
+
+\end{document}
